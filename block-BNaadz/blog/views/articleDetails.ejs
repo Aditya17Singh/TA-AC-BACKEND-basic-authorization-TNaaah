@@ -1,0 +1,48 @@
+<% include partials/header %>
+<main>
+  <div class="container">
+    <h4 class="title"><%= article.title %></h4>
+    <h4 class="author"><%= article.author %></h4>
+    <% article.tags.forEach(t => { %>
+    <span class="tags"> <%= t %> </span>
+    <% }) %>
+    <p class="para"><%= article.description %></p>
+    <a class="likes" href="/articles/<%= article.id %>/likes">
+      <button class="">Like</button>
+    </a>
+    <span class="span"><%= article.likes ? article.likes : 0 %></span>
+    <a class="dislike" href="/articles/<%= article.id %>/Dislike">
+      <button>Dislike</button>
+    </a>
+    <span class="span"><%= article.Dislike ? article.Dislike : 0 %></span>
+    <div>
+      <a class="edit" href="/articles/<%= article.id %>/edit">
+        <button class="">Edit</button>
+      </a>
+      <a class="delete" href="/articles/<%= article.id %>/delete">
+        <button class="">Delete</button>
+      </a>
+    </div>
+    <div>
+      <form
+        class="form1"
+        action="/articles/<%= article.id %>/comments "
+        method="POST"
+      >
+        <textarea name="content" id="" rows="5"></textarea>
+        <input class="text-input" type="submit" value="Add Comment" />
+      </form>
+    </div>
+    <% article.comments.forEach(comment => { %>
+    <p><%= comment.content %></p>
+    <div>
+      <a href="/comment/<%= comment.id %>/edit ">
+        <button>Edit</button>
+      </a>
+      <a href="/comment/<%= comment.id %>/delete ">
+        <button>Delete</button>
+      </a>
+    </div>
+    <% }) %>
+  </div>
+</main>
