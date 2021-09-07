@@ -1,0 +1,38 @@
+<% include partials/header %>
+<main>
+  <form action="/articles/<%= article.id %>" method="POST" class="form">
+    <h3>All Articles</h3>
+    <input
+      type="text"
+      name="title"
+      class="form-control"
+      placeholder="Add Title"
+      value="<%= article.title %>"
+    />
+    <textarea
+      class="form-textarea"
+      name="description"
+      rows="4"
+      placeholder="Add Description"
+    >
+        <%="article.description"%>
+    </textarea>
+    <input
+      type="text"
+      class="form-control"
+      name="tags"
+      placeholder="Tags"
+      value="<%= article.tags %>"
+    />
+    <input
+      type="text"
+      name="author"
+      class="form-control"
+      placeholder="Author"
+      value="<%= article.author %>"
+    />
+    <div>
+      <button type="submit">Update Article</button>
+    </div>
+  </form>
+</main>

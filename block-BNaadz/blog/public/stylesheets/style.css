@@ -1,0 +1,288 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(239, 239, 243);
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+/* p {
+  color: blue;
+} */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+header {
+  padding: 2rem 0;
+  background-color: rgb(245, 226, 234);
+}
+
+.center {
+  margin-left: 37rem;
+  margin-top: 9rem;
+}
+.btn {
+  background-color: rgb(16, 83, 16);
+  border: 0;
+  padding: 0.8rem 0.8rem;
+  border-radius: 3px;
+}
+.form {
+  margin: 3rem auto;
+  text-align: center;
+}
+.form-control {
+  display: block;
+  margin-left: 340px;
+  width: 47%;
+  height: 30px;
+}
+textarea {
+  width: 47%;
+}
+h5 {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin-top: 1rem;
+}
+h6 {
+  color: rgb(92, 177, 137);
+  margin: 2rem 5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 1rem 0.5rem;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.text {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: absolute;
+  top: 30%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  text-transform: uppercase;
+  font-family: verdana;
+  font-size: 4em;
+  font-weight: 700;
+  color: #f5f5f5;
+  text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191,
+    1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191,
+    1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191,
+    1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
+    1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
+    1px 30px 60px rgba(16, 16, 16, 0.4);
+}
+.home {
+  font-size: 2rem;
+  color: black;
+  font-weight: 900;
+  opacity: 0.7;
+}
+.title {
+  color: rgb(94, 141, 94);
+  font-size: 2.6rem;
+}
+.author {
+  margin-top: 0.7rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+.para {
+  margin: 1rem 0rem;
+}
+.likes button {
+  margin-bottom: 1rem;
+  color: white;
+  background-color: rgb(81, 138, 211);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.5rem 0.7rem;
+}
+.dislike button {
+  color: white;
+  background-color: rgb(211, 81, 178);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.5rem 0.7rem;
+  margin-left: 1rem;
+}
+.span {
+  margin-left: 0.7rem;
+  font-weight: 900;
+}
+.tags {
+  padding: 0.3rem 0.4rem;
+  border: 1px solid black;
+}
+.edit button {
+  /* margin-bottom: 1rem; */
+  color: white;
+  background-color: rgb(100, 197, 176);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.5rem 0.7rem;
+}
+.delete button {
+  color: rgb(197, 18, 42);
+  background-color: rgb(100, 197, 176);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.5rem 0.7rem;
+  margin-left: 2.9rem;
+}
+.form1 {
+  margin-top: 2rem;
+}
+.text-input {
+  display: block;
+  background-color: blueviolet;
+  color: white;
+  border: 0;
+  border-radius: 3px;
+  padding: 0.5rem 0.5rem;
+  margin-top: 0.5rem;
+}
