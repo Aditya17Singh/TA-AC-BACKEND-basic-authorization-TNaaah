@@ -6,7 +6,6 @@ module.exports = {
       next();
     } else {
       res.redirect("/users/login");
-      next();
     }
   },
   userInfo: (req, res, next) => {
@@ -14,6 +13,7 @@ module.exports = {
     if (userId) {
       User.findById(userId, "name email", (err, user) => {
         if (err) return next(err);
+        console.log(user);
         req.user = user;
         res.locals.user = user;
         next();
