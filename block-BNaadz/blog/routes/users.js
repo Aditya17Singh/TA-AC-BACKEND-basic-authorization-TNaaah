@@ -7,6 +7,17 @@ var User = require("../models/User");
 router.get("/", function (req, res, next) {
   res.render("users");
 });
+router.use("/dashboard", (req, res, next) => {
+  if (req.session && req.session.userId) {
+    let userId = req.session.userId;
+    User.findById(userId, (err, user) => {
+      if (err) return next(err);
+      res.render("dashboard", { user });
+    });
+  } else {
+    res.redirect("/users/login");
+  }
+});
 
 router.get("/register", (req, res, next) => {
   res.render("register", { error: req.flash("error")[0] });
@@ -29,7 +40,7 @@ router.get("/login", (req, res, next) => {
   res.render("login", { error });
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   var { email, password } = req.body;
   console.log(email, password);
   if (!email || !password) {
@@ -51,7 +62,8 @@ router.post("/login", (req, res) => {
       }
       //persisit logged in user info
       req.session.userId = user.id;
-      res.redirect("/dashboard");
+      console.log(req.session);
+      res.redirect("/users/dashboard");
     });
   });
 });

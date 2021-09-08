@@ -10,6 +10,7 @@ var Comment = require("../models/Comment");
 router.get("/", (req, res, next) => {
   Article.find({}, (err, articles) => {
     if (err) return next(err);
+    console.log(req.session);
     res.render("articles", { articles });
   });
 });

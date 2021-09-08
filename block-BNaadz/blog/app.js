@@ -51,6 +51,7 @@ app.use(auth.userInfo);
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
+app.use(auth.loggedInUser);
 app.use("/articles", articleRouter);
 app.use("/comment", commentRouter);
 

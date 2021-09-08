@@ -6,27 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script
+      src="https://kit.fontawesome.com/508c3a88fa.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
-      <div class="container flex">
-        <a class="home" href="/"> Home </a>
+      <div class="container">
         <% if(user){ %>
-        <a href="/users/logout">
-          <button>Logout</button>
-        </a>
-        <% } else{ %>
-        <span>
+        <nav class="flex">
+          <a class="home" href="/"> Home </a>
+          <a href=""><i class="far fa-user"></i><%= user.name %></a>
           <button class="btn">
             <a href="/articles/new"> Add Article </a>
           </button>
-          <a href="/users/login">
-            <button class="btn">Login</button>
-          </a>
-          <a href="/users/register">
-            <button class="btn">Register</button>
-          </a>
-        </span>
+        </nav>
+        <a href="/users/logout">
+          <button class="btn logout">Logout</button>
+        </a>
+        <% } else{ %>
+        <a class="home" href="/"> Home </a>
+
+        <a href="/users/login">
+          <button class="btn">Login</button>
+        </a>
+        <a href="/users/register">
+          <button class="btn">Register</button>
+        </a>
         <% } %>
       </div>
     </header>
