@@ -42,7 +42,6 @@ router.get("/login", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   var { email, password } = req.body;
-  console.log(email, password);
   if (!email || !password) {
     req.flash("error", "Email/Password required");
     return res.redirect("/users/login");
@@ -62,7 +61,6 @@ router.post("/login", (req, res, next) => {
       }
       //persisit logged in user info
       req.session.userId = user.id;
-      console.log(req.session);
       res.redirect("/users/dashboard");
     });
   });
