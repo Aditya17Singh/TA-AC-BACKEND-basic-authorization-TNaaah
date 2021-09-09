@@ -2,6 +2,7 @@ var express = require("express");
 const { NotExtended } = require("http-errors");
 var router = express.Router();
 var auth = require("../middlewares/auth");
+var ownership = require("../own/ownership");
 
 var Article = require("../models/Article");
 var Comment = require("../models/Comment");
@@ -10,7 +11,6 @@ var Comment = require("../models/Comment");
 router.get("/", (req, res, next) => {
   Article.find({}, (err, articles) => {
     if (err) return next(err);
-    console.log(req.session);
     res.render("articles", { articles });
   });
 });
@@ -26,6 +26,7 @@ router.get("/:id", (req, res, next) => {
   Article.findById(id, (err, article) => {
     Article.findById(id)
       .populate("comments")
+      .populate("author", "name email")
       .exec((err, article) => {
         if (err) return next(err);
         res.render("articleDetails", { article });
@@ -38,6 +39,7 @@ router.use(auth.loggedInUser);
 //create Article
 router.post("/", (req, res, next) => {
   req.body.tags = req.body.tags.trim().split(" ");
+  req.body.author = req.user._id;
   Article.create(req.body, (err, createdArticle) => {
     if (err) return next(err);
     res.redirect("/articles");
@@ -50,9 +52,14 @@ router.get("/:id/edit", (req, res) => {
   Article.findById(id, (err, article) => {
     article.tags = article.tags.join(" ");
     if (err) return next(err);
-    res.render("editArticleForm", { article });
+    if (req.user.id == article.author) {
+      res.render("editArticleForm", { article });
+    } else {
+      res.redirect("/articles/" + id);
+    }
   });
 });
+
 //Update article
 router.post("/:id", (req, res, next) => {
   var id = req.params.id;
@@ -66,11 +73,20 @@ router.post("/:id", (req, res, next) => {
 //delete
 router.get("/:id/delete", (req, res, next) => {
   var id = req.params.id;
-  Article.findByIdAndDelete(id, (err, article) => {
+  var currentUserId = req.user.id;
+  Article.findById(id, (err, article) => {
     if (err) return next(err);
-    Comment.deleteMany({ bookId: bookId }, (err, info) => {
-      res.redirect("/articles");
-    });
+    console.log(typeof currentUserId, typeof article.author);
+    if (currentUserId !== article.author.toString()) {
+      res.redirect("/articles/" + id);
+    } else {
+      Article.findByIdAndDelete(id, (err, article) => {
+        if (err) return next(err);
+        Comment.deleteMany({ bookId: article._id }, (err, info) => {
+          res.redirect("/articles");
+        });
+      });
+    }
   });
 });
 

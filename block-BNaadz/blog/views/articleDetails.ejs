@@ -2,7 +2,7 @@
 <main>
   <div class="container">
     <h4 class="title"><%= article.title %></h4>
-    <h4 class="author"><%= article.author %></h4>
+    <h4 class="author"><%= article.author.name %></h4>
     <% article.tags.forEach(t => { %>
     <span class="tags"> <%= t %> </span>
     <% }) %>
