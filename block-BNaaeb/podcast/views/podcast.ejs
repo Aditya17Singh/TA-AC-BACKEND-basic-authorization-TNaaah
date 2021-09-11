@@ -1,0 +1,26 @@
+<%include partials/header%>
+<body>
+  <main>
+    <section class="container podcasts-sec">
+      <%podcasts.forEach(ele => {%>
+      <article class="each-podcast center flex relative">
+        <audio class="audio" controls>
+          <source src="/podcasts/<%=ele.audioFile%>" />
+        </audio>
+        <img
+          class="full-width"
+          src="/podcasts/<%=ele.imageFile%>"
+          alt="podcast-image"
+        />
+        <div class="single flex">
+          <a href="/podcast/<%=ele.id%>"><%=ele.title%></a>
+          <p><span>By:</span> <%= ele.artist%></p>
+        </div>
+        <!-- <h5><date><%=ele.date%></date>time</h5> -->
+        <span><%=ele.category %> </span>
+      </article>
+      <%})%>
+      <a href="/podcast/new" class="add-btn">Add Podcast</a>
+    </section>
+  </main>
+</body>
