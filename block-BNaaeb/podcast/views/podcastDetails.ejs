@@ -1,0 +1,15 @@
+<%include partials/header%>
+    <main>
+        <section class="details-sec">
+            <h2><%=podcast.title%></h2>
+            <h3><span>By:</span> <%=podcast.artist%></h3>
+            <h4>August 8 2021</h4>
+            <img src="/podcasts/<%=podcast.imageFile%>" alt="">
+            <audio class="audio" controls>
+                <source src="/podcasts/<%=podcast.audioFile%>" />
+            </audio>
+            <a href="">Edit</a>
+            <a href="">Delete</a>
+        </section>
+    </main>
+</body>
