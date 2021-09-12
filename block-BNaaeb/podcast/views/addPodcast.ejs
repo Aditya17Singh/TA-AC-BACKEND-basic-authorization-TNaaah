@@ -1,0 +1,21 @@
+<%include partials/header%>
+<main>
+  <fieldset>
+    <form enctype="multipart/form-data" action="/podcast" method="POST">
+      <input type="title" name="title" placeholder="Title" />
+      <input type="artist" name="artist" placeholder="Artist" />
+      <label class="image" for="image"> Image </label>
+      <input type="file" name="imageFile" placeholder="image" />
+      <label class="image" for="image"> Audio </label>
+      <input type="file" name="audioFile" placeholder="audio" />
+      <% if(user){ %>
+      <select name="member" id="">
+        <option value="Free">Free</option>
+        <option value="VIP">VIP</option>
+        <option value="Premium">Premium</option>
+      </select>
+      <% } %>
+      <input class="submit" type="submit" placeholder="submit" />
+    </form>
+  </fieldset>
+</main>

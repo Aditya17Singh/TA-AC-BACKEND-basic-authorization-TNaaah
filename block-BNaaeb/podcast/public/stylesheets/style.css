@@ -166,3 +166,61 @@ header {
 .podcast {
   font-size: 1.5rem;
 }
+fieldset {
+  margin: 5rem auto;
+  padding: 1rem 2rem;
+  border: 3px solid #f3f3f3;
+  display: flex;
+  max-width: 500px;
+  border-radius: 4px;
+}
+input {
+  display: block;
+  margin: 1rem 0rem;
+  width: 28rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid silver;
+}
+.submit {
+  background-color: red;
+  color: #ffffff;
+  border-radius: 3px;
+  width: 5rem;
+  margin-top: 2rem;
+}
+.logout {
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+}
+.image {
+  background-color: green;
+  color: white;
+  padding: 0.2rem 0.2rem;
+  border-radius: 2px;
+}
+h6 {
+  color: black;
+  font-size: 3rem;
+}
+.audio {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 18%;
+  font-size: 4rem;
+  color: #151515;
+}
+.each-podcast .audio::-webkit-media-controls-current-time-display,
+.each-podcast .audio::-webkit-media-controls-time-remaining-display,
+.each-podcast .audio::-webkit-media-controls-mute-button,
+.each-podcast .audio::-webkit-media-controls-timeline {
+  display: none;
+}
+.each-podcast .audio::-webkit-media-controls-panel {
+  background-color: #ffff00;
+  color: white;
+}

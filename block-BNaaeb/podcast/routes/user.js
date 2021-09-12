@@ -3,71 +3,89 @@ var router = express.Router();
 
 var User = require("../model/User");
 
-//  registration
-router.get("/register/new", (req, res, next) => {
-  const error = req.flash("error");
-  res.render("registration", { error });
+/* GET users listing. */
+router.get("/", function (req, res, next) {
+  res.render("user");
+});
+router.use("/userDashboard", (req, res, next) => {
+  if (req.session && req.session.userId) {
+    let userId = req.session.userId;
+    User.findById(userId, (err, user) => {
+      if (err) return next(err);
+      res.render("userDashboard", { user });
+    });
+  } else {
+    res.redirect("/user/login");
+  }
 });
 
-router.post("/register", (req, res, next) => {
-  var { name, email, password, category } = req.body;
-  if (!name || !email || !password || !category) {
-    req.flash("error", "Enter required fields!");
-    return res.redirect("/user/register/new");
+router.use("/adminDashboard", (req, res, next) => {
+  if (req.session && req.session.userId) {
+    let userId = req.session.userId;
+    User.findById(userId, (err, user) => {
+      if (err) return next(err);
+      res.render("adminDashboard", { user });
+    });
+  } else {
+    res.redirect("/user/login");
   }
-  User.create(req.body, (error, user) => {
-    if (error) {
-      if (error.name === "MongoError") {
-        req.flash("error", "Admin already exsits!");
-        return res.redirect("/user/register/new");
+});
+
+router.get("/register", (req, res, next) => {
+  res.render("register", { error: req.flash("error")[0] });
+});
+router.post("/register", (req, res, next) => {
+  User.create(req.body, (err, user) => {
+    if (err) {
+      if (err.name === "MongoError") {
+        req.flash("error", "This email is taken");
+        return res.redirect("/user/register");
       }
-      if (error.name === "ValidationError") {
-        req.flash("error", error.message);
-        return res.redirect("/user/register/new");
-      }
+      return res.json({ err });
     }
-    res.redirect("/");
+    res.redirect("/user/login");
   });
 });
 
-// login
+router.get("/login", (req, res, next) => {
+  var error = req.flash("error")[0];
+  res.render("login", { error });
+});
+
 router.post("/login", (req, res, next) => {
   var { email, password } = req.body;
   if (!email || !password) {
-    req.flash("error", "Enter required fields!");
-    return res.redirect("/");
+    req.flash("error", "Email/Password required");
+    return res.redirect("/user/login");
   }
-  User.findOne({ email }, (error, user) => {
-    if (error) return next(error);
+  User.findOne({ email }, (err, user) => {
+    console.log(req.body, user);
+    if (err) return next(err);
+    //no user
     if (!user) {
-      req.flash("error", "User does not exists!");
-      return res.redirect("/");
+      return res.redirect("/user/login");
     }
-    console.log("Hi1");
-    user.comparePassword(password, (error, result) => {
-      console.log(result, "result");
-      if (error) return next(error);
-      console.log("Hi3");
+    //compare password
+    user.verifyPassword(password, (err, result) => {
+      if (err) return next(err);
       if (!result) {
-        req.flash("error", "Password is wrong!");
-        return res.redirect("/");
+        return res.redirect("/user/login");
+      }
+      //persisit logged in user info
+      req.session.userId = user.id;
+      if (user.isAdmin === true) {
+        res.redirect("/user/adminDashboard");
       } else {
-        if (user.isAdmin) {
-          req.session.adminId = user.id;
-          res.render("adminDashboard");
-        } else {
-          req.session.userId = user.id;
-          res.redirect("/podcast");
-        }
+        res.redirect("/user/userDashboard");
       }
     });
   });
 });
 
-router.get("/logout", (req, res, next) => {
+router.get("/logout", (req, res) => {
   req.session.destroy();
   res.clearCookie("connect.sid");
-  res.redirect("/");
+  res.redirect("/user/login");
 });
 
 module.exports = router;

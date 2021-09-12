@@ -13,6 +13,7 @@ require("dotenv").config();
 var indexRouter = require("./routes/index");
 var podcastRouter = require("./routes/podcast");
 var userRouter = require("./routes/user");
+var auth = require("./middleware/auth");
 
 //conect to database
 mongoose.connect(
@@ -45,6 +46,7 @@ app.use(
 );
 
 app.use(flash());
+app.use(auth.userInfo);
 
 app.use("/", indexRouter);
 app.use("/podcast", podcastRouter);
