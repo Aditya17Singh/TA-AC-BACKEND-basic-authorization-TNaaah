@@ -1,41 +1,14 @@
 <%include partials/header%>
 <main>
-  <section class="container">
-    <div class="wrapper">
-      <form class="form" action="" method="POST">
-        <div class="pageTitle title">Sign In</div>
-        <%if(error){%>
-        <p class="error"><%=error%></p>
-        <%}%>
-        <input
-          type="text"
-          class="name formEntry"
-          name="name"
-          placeholder="Name"
-        />
-        <input
-          type="email"
-          class="name formEntry"
-          name="email"
-          placeholder="Email"
-        />
-        <select name="category" class="name formEntry select">
-          <option value="default" class="">Category</option>
-          <option value="free" class="">Free</option>
-          <option value="vip" class="">VIP</option>
-          <option value="premium" class="">Premium</option>
-        </select>
-        <input
-          type="password"
-          class="name formEntry"
-          name="password"
-          placeholder="Password"
-        />
-        <button class="submit formEntry">Sign Up</button>
-        <button class="formEntry">
-          <a href="/">Back to Home</a>
-        </button>
-      </form>
-    </div>
-  </section>
+  <% if(error){ %>
+  <p><%= error %></p>
+  <% } %>
+  <fieldset>
+    <form action="/user/register" method="POST">
+      <input type="name" name="name" placeholder="Name" />
+      <input type="email" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
+      <input class="submit" type="submit" placeholder="submit" />
+    </form>
+  </fieldset>
 </main>

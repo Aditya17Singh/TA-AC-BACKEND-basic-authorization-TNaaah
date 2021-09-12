@@ -14,21 +14,36 @@
   <body>
     <header>
       <div class="container">
+        <% if(user){ %>
         <nav class="flex podcast">
           <div>
             <a class="home" href="/"> Podacast </a>
           </div>
           <div>
-            <a class="login" href="/user/login">
-              <span>User</span>
+            <a class="logout" href="/podcast/new">
+              Add Podcast
             </a>
-            <a class="register login" href="/podcast/register">
-              <span>Admin</span>
+            <a class="logout" href="/user/logout">
+              Log Out
+          </a>
+          </div>
+        </nav>
+        <% }else{ %>
+        <navm class="flex podcast">
+          <div>
+            <a class="home" href="/"> Podacast </a>
+          </div>
+          <div>
+            <a class="login" href="/user/login">
+              <span>Log In</span>
+            </a>
+            <a class="register login" href="/user/register">
+              <span>Register</span>
             </a>
           </div>
         </nav>
+        <% } %>
       </div>
     </header>
-    <main></main>
   </body>
 </html>

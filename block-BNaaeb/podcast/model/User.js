@@ -13,20 +13,21 @@ var userSchema = new Schema(
 );
 
 userSchema.pre("save", function (next) {
+  if (this.email === "3daditya@gmail.com") {
+    this.isAdmin = true;
+  }
   if (this.password && this.isModified("password")) {
     bcrypt.hash(this.password, 10, (err, hashed) => {
       if (err) return next(err);
       this.password = hashed;
-      next();
+      return next();
     });
-  } else if (this.email === "3daditya@gmail.com") {
-    this.isAdmin = true;
   } else {
-    next();
+    return next();
   }
 });
 
-userSchema.method.verifyPassword = function (password, cb) {
+userSchema.methods.verifyPassword = function (password, cb) {
   bcrypt.compare(password, this.password, (err, result) => {
     return cb(err, result);
   });

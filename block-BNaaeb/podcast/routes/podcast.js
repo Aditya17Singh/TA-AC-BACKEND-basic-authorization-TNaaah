@@ -3,65 +3,54 @@ var router = express.Router();
 const { NotExtended } = require("http-errors");
 var auth = require("../middleware/auth");
 var Podcast = require("../model/Podcast");
-
 var multer = require("multer");
 var path = require("path");
 
-var uploadPath = path.join(__dirname, "../", "public/mp4");
-
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, uploadPath);
+    cb(null, path.join(__dirname, "../public/uploads/"));
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + "-" + file.originalname);
   },
 });
 
-var upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
-/* GET new form */
-router.get("/new", auth.isAdminLogged, function (req, res, next) {
-  const error = req.flash("error")[0];
-  res.render("createPodcast", { error });
-});
-
-// POST new poscast
-router.post(
-  "/",
-  upload.fields([{ name: "audioFile" }, { name: "imageFile" }]),
-  (req, res, next) => {
-    req.body.audioFile = req.files.audioFile[0].filename;
-    req.body.imageFile = req.files.imageFile[0].filename;
-    Podcast.create(req.body, (error, podcast) => {
-      if (error) {
-        if (error.name === "ValidationError") {
-          req.flash("error", error.message);
-          return res.redirect("/podcast/new");
-        }
-      } else {
-        res.redirect("/podcast");
-      }
-    });
-  }
-);
-
-// GET all podcasts
-router.get("/", auth.isAdminAndUserLogged, (req, res, next) => {
-  var category = req.user.category || req.admin.category;
-  if (category) {
-    console.log(category, "fcscvsvsv");
-  }
-  Podcast.find({}, (error, podcasts) => {
-    if (error) return next(error);
-    res.render("podcasts", { podcasts });
+//List Podcast
+router.get("/", (req, res, next) => {
+  Podcast.find({}, (err, podcast) => {
+    if (err) return next(err);
+    res.render("podcast", { podcast });
   });
 });
 
-// GET single podcast
+//create Podcast form
+router.get("/new", auth.loggedInUser, (req, res) => {
+  res.render("addPodcast");
+});
+
+router.post(
+  "/",
+  auth.loggedInUser,
+  upload.fields([{ name: "imageFile" }, { name: "audioFile" }]),
+  (req, res, next) => {
+    console.log(req.files);
+    req.body.imageFile = req.files.imageFile[0].filename;
+    req.body.audioFile = req.files.audioFile[0].filename;
+    Podcast.create(req.body, (err, createdPodcast) => {
+      if (err) return next(err);
+      res.redirect("/podcast");
+    });
+  }
+);
+//Fetch single Podacst
 router.get("/:id", (req, res, next) => {
-  const podcastId = req.params.id;
-  Podcast.findById(podcastId, (error, podcast) => {
+  var id = req.params.id;
+  Podcast.findById(id, (err, podcast) => {
+    Podcast.findById(id);
+    if (err) return next(err);
     res.render("podcastDetails", { podcast });
   });
 });
