@@ -1,0 +1,15 @@
+<% include partials/header %>
+<main>
+  <div class="container">
+    <form action="/comment/<%= comment.id %> " method="POST">
+      <h2>Update Comment</h2>
+      <textarea name="content" id="" rows="10" placeholder="Update Comment">
+                <%= comment.content %> 
+            </textarea
+      >
+      <div>
+        <button type="submit">Update comment</button>
+      </div>
+    </form>
+  </div>
+</main>
