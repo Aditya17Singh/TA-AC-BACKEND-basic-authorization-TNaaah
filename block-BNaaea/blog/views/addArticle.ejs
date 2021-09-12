@@ -1,0 +1,28 @@
+<% include partials/header %>
+<main>
+  <form action="/articles" method="POST" class="form">
+    <h3 class="allArticles">All Articles</h3>
+    <input
+      type="text"
+      name="title"
+      class="form-control"
+      placeholder="Add Title"
+    />
+    <textarea
+      class="form-textarea"
+      name="description"
+      rows="4"
+      placeholder="Add Description"
+    ></textarea>
+    <input type="text" class="form-control" name="tags" placeholder="Tags" />
+    <input
+      type="text"
+      name="author"
+      class="form-control"
+      placeholder="Author"
+    />
+    <div>
+      <button type="submit">Add Article</button>
+    </div>
+  </form>
+</main>

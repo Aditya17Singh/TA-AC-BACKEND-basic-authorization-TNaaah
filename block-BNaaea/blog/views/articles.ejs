@@ -1,0 +1,14 @@
+<% include partials/header %>
+<main>
+  <h5>All Articles</h5>
+  <% articles.forEach(a => { %>
+  <section>
+    <div>
+      <a href="/articles/<%= a.id %>">
+        <h6><%= a.title %></h6>
+      </a>
+    </div>
+  </section>
+  <% }) %>
+</main>
+
