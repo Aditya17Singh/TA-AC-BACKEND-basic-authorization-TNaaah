@@ -1,0 +1,13 @@
+<%include partials/header%>
+<main>
+  <h5>All Podcast</h5>
+  <% podcast.forEach(a => { %>
+  <section>
+    <div>
+      <a href="/podcast/<%= a.id %>">
+        <h6><%= a.title %></h6>
+      </a>
+    </div>
+  </section>
+  <% }) %>
+</main>

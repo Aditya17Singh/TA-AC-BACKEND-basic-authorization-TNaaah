@@ -1,0 +1,235 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+header {
+  padding: 2rem 0;
+  background-color: #151515;
+}
+.login {
+  color: white;
+  margin-right: 1rem;
+  font-size: 1.1rem;
+}
+.login :hover {
+  color: yellowgreen;
+}
+.register {
+  margin-right: 0rem;
+}
+.podcast {
+  font-size: 1.5rem;
+}
+fieldset {
+  margin: 5rem auto;
+  padding: 1rem 2rem;
+  border: 3px solid #f3f3f3;
+  display: flex;
+  max-width: 500px;
+  border-radius: 4px;
+}
+input {
+  display: block;
+  margin: 1rem 0rem;
+  width: 28rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid silver;
+}
+.submit {
+  background-color: red;
+  color: #ffffff;
+  border-radius: 3px;
+  width: 5rem;
+  margin-top: 2rem;
+}
+.logout {
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+}
+.image {
+  background-color: green;
+  color: white;
+  padding: 0.2rem 0.2rem;
+  border-radius: 2px;
+}
+h6 {
+  color: black;
+  font-size: 3rem;
+}
+/* .audio {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 18%;
+  font-size: 4rem;
+  color: #151515;
+}
+.each-podcast .audio::-webkit-media-controls-current-time-display,
+.each-podcast .audio::-webkit-media-controls-time-remaining-display,
+.each-podcast .audio::-webkit-media-controls-mute-button,
+.each-podcast .audio::-webkit-media-controls-timeline {
+  display: none;
+}
+.each-podcast .audio::-webkit-media-controls-panel {
+  background-color: #ffff00;
+  color: white;
+} */
+.btn {
+  border: 0;
+  color: white;
+  padding: 0.3rem 0.7rem;
+}
+.pending {
+  font-size: 0.9rem;
+  margin-left: 0.8rem;
+}

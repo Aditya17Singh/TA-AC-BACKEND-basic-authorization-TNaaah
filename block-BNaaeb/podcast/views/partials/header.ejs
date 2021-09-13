@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script
+      src="https://kit.fontawesome.com/508c3a88fa.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <% if(user){ %>
+        <nav class="flex podcast">
+          <div>
+            <span class="btn" onclick="history.back()">
+                <i class="far fa-arrow-alt-circle-left"></i>
+            </span>
+            <a class="home" href="/"> Podacast </a>
+          </div>
+          <div>
+            <a class="logout" href="/podcast/new">
+              Add Podcast
+            </a>
+            <% if(user.isAdmin){ %>
+              <a href="/podcast/pending">
+                <span class="pending">
+                  Pending
+                </span>
+              </a>
+            <% } %>
+            <a class="logout" href="/user/logout">
+              Log Out
+            </a>
+          </div>
+        </nav>
+        <% }else{ %>
+        <navm class="flex podcast">
+          <div>
+            <a class="home" href="/"> Podacast </a>
+          </div>
+          <div>
+            <a class="login" href="/user/login">
+              <span>Log In</span>
+            </a>
+            <a class="register login" href="/user/register">
+              <span>Register</span>
+            </a>
+          </div>
+        </nav>
+        <% } %>
+ 
+      </div>
+    </header>
+  </body>
+</html>

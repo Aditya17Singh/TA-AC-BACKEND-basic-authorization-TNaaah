@@ -1,0 +1,9 @@
+<%include partials/header%>
+<main>
+  <h4><%= podcast.artist %></h4>
+  <h4>
+    <audio class="each-podcast" autoplay controls>
+      <source class="audio" src="/uploads/<%= podcast.audioFile %> " />
+    </audio>
+  </h4>
+</main>
