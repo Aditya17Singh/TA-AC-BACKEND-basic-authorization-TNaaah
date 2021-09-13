@@ -20,10 +20,17 @@ const upload = multer({ storage: storage });
 
 //List Podcast
 router.get("/", (req, res, next) => {
-  Podcast.find({}, (err, podcast) => {
-    if (err) return next(err);
-    res.render("podcast", { podcast });
-  });
+  if (req.user.isAdmin) {
+    Podcast.find({}, (err, podcast) => {
+      if (err) return next(err);
+      res.render("podcast", { podcast });
+    });
+  } else {
+    Podcast.find({ isVerified: true }, (err, podcast) => {
+      if (err) return next(err);
+      res.render("podcast", { podcast });
+    });
+  }
 });
 
 //create Podcast form
@@ -36,15 +43,24 @@ router.post(
   auth.loggedInUser,
   upload.fields([{ name: "imageFile" }, { name: "audioFile" }]),
   (req, res, next) => {
-    console.log(req.files);
     req.body.imageFile = req.files.imageFile[0].filename;
     req.body.audioFile = req.files.audioFile[0].filename;
+    if (req.user.isAdmin) {
+      req.body.isVerified = true;
+    }
     Podcast.create(req.body, (err, createdPodcast) => {
       if (err) return next(err);
       res.redirect("/podcast");
     });
   }
 );
+//pending
+router.get("/pending", auth.loggedInUser, (req, res) => {
+  Podcast.find({ isVerified: false }, (err, podcast) => {
+    if (err) return next();
+    res.render("pending", { podcast });
+  });
+});
 //Fetch single Podacst
 router.get("/:id", (req, res, next) => {
   var id = req.params.id;

@@ -8,7 +8,7 @@
       <input type="file" name="imageFile" placeholder="image" />
       <label class="image" for="image"> Audio </label>
       <input type="file" name="audioFile" placeholder="audio" />
-      <% if(user){ %>
+      <% if(user.isAdmin){ %>
       <select name="member" id="">
         <option value="Free">Free</option>
         <option value="VIP">VIP</option>

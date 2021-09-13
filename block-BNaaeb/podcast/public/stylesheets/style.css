@@ -206,7 +206,7 @@ h6 {
   color: black;
   font-size: 3rem;
 }
-.audio {
+/* .audio {
   position: absolute;
   top: 2rem;
   left: 2rem;
@@ -223,4 +223,13 @@ h6 {
 .each-podcast .audio::-webkit-media-controls-panel {
   background-color: #ffff00;
   color: white;
+} */
+.btn {
+  border: 0;
+  color: white;
+  padding: 0.3rem 0.7rem;
+}
+.pending {
+  font-size: 0.9rem;
+  margin-left: 0.8rem;
 }
