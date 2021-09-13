@@ -1,8 +1,5 @@
-<% include partials/header %>
+<%include partials/header %>
 <main>
-  <% if(error){ %>
-  <p><%= error %></p>
-  <% } %>
   <fieldset>
     <form action="/user/login" method="POST">
       <input type="email" name="email" placeholder="Email" />

@@ -11,7 +11,7 @@ module.exports = {
   userInfo: (req, res, next) => {
     var userId = req.session && req.session.userId;
     if (userId) {
-      User.findById(userId, "name email", (err, user) => {
+      User.findById(userId, "name email isAdmin", (err, user) => {
         if (err) return next(err);
         req.user = user;
         res.locals.user = user;
@@ -22,5 +22,5 @@ module.exports = {
       res.locals.user = null;
       next();
     }
-  },  
+  },
 };

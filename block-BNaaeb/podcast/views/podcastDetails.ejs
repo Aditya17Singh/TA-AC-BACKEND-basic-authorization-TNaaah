@@ -2,12 +2,8 @@
 <main>
   <h4><%= podcast.artist %></h4>
   <h4>
-    <audio class="each-podcast" src="">
-      <source
-        class="audio"
-        src="/uploads/<%= podcast.audioFile %> "
-        type="audio/mpeg"
-      />
+    <audio class="each-podcast" autoplay controls>
+      <source class="audio" src="/uploads/<%= podcast.audioFile %> " />
     </audio>
   </h4>
 </main>

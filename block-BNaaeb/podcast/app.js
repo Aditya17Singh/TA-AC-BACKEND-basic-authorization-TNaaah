@@ -46,6 +46,7 @@ app.use(
 );
 
 app.use(flash());
+
 app.use(auth.userInfo);
 
 app.use("/", indexRouter);

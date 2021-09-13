@@ -6,6 +6,7 @@ var podcastSchema = new Schema(
     artist: { type: String },
     imageFile: { type: String },
     audioFile: { type: String },
+    isVerified: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

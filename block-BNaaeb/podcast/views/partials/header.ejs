@@ -17,15 +17,25 @@
         <% if(user){ %>
         <nav class="flex podcast">
           <div>
+            <span class="btn" onclick="history.back()">
+                <i class="far fa-arrow-alt-circle-left"></i>
+            </span>
             <a class="home" href="/"> Podacast </a>
           </div>
           <div>
             <a class="logout" href="/podcast/new">
               Add Podcast
             </a>
+            <% if(user.isAdmin){ %>
+              <a href="/podcast/pending">
+                <span class="pending">
+                  Pending
+                </span>
+              </a>
+            <% } %>
             <a class="logout" href="/user/logout">
               Log Out
-          </a>
+            </a>
           </div>
         </nav>
         <% }else{ %>
@@ -43,6 +53,7 @@
           </div>
         </nav>
         <% } %>
+ 
       </div>
     </header>
   </body>
